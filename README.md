@@ -1,2 +1,2 @@
-# base-go-app
-Template for Go Applications
+# Application Name
+Application Description

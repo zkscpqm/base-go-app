@@ -1,0 +1,43 @@
+version: "4"
+
+networks:
+  default:
+    external: false
+
+services:
+#  db:
+#    image: postgres:16
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: somepassword
+#      POSTGRES_DB: unnamed
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U onlypans"]
+#      interval: 5s
+#      timeout: 5s
+#      retries: 5
+#      start_period: 10s
+#    ports:
+#      - "5432:5432"
+
+  unnamed:
+    build:
+      context: ../..
+      dockerfile: ./Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 1s
+    ports:
+      - "8080:8080"
+
+
+volumes:
+  postgres_data:
