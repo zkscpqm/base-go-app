@@ -1,0 +1,19 @@
+{
+    "api": {
+        "rest": {
+            "enabled": true,
+            "port": 8080
+        }
+    },
+    "log": {
+        "level": "DEBUG"
+    },
+    "database": {
+        "engine": "postgres",
+        "database": "unnamed",
+        "host": "db",
+        "port": 5432,
+        "username": "postgres",
+        "password": "somepassword"
+    }
+}

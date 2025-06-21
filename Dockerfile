@@ -7,7 +7,7 @@ COPY cmd/ cmd/
 COPY go.mod .
 COPY go.sum .
 
-RUN GOOS=linux GOARCH=amd64 go build -o onlypans ./cmd/unnamed/main.go
+RUN GOOS=linux GOARCH=amd64 go build -o unnamed ./cmd/unnamed/main.go
 
 # Step 2: Use a minimal image for running the application
 FROM debian:stable-slim
@@ -17,7 +17,6 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y curl
 
 COPY deploy/dev/config.json .
-COPY data/ data/
 COPY --from=builder /app/unnamed .
 
 EXPOSE 8080

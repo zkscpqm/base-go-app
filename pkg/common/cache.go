@@ -133,3 +133,15 @@ func (c *AsyncSafeCache[KeyT, ValT]) Merge(other map[KeyT]ValT) (newEntries []Va
 	})
 	return
 }
+
+type CacheManager struct {
+	SomeCache AsyncSafeCache[string, int64]
+}
+
+func NewCacheManager() CacheManager {
+	return CacheManager{
+		SomeCache: AsyncSafeCache[string, int64]{
+			cache: make(Cache[string, int64]),
+		},
+	}
+}

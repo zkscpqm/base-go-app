@@ -19,4 +19,10 @@ clean:
 	@mkdir -p bin
 	@rm -rf bin/*
 
+up:
+	@echo "Starting docker deployment..."
+	@docker compose -f deploy/dev/docker-compose.yaml up -d
 
+down:
+	@echo "Shutting down docker deployment..."
+	@docker compose -f deploy/dev/docker-compose.yaml down
